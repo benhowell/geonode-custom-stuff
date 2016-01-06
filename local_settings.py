@@ -7,7 +7,6 @@ import geonode
 #DEBUG = TEMPLATE_DEBUG = False
 #DEBUG = TEMPLATE_DEBUG = True
 
-
 # Set to True to load non-minified versions of (static) client dependencies
 # Requires to set-up Node and tools that are required for static development 
 # otherwise it will raise errors for the missing non-minified dependencies
@@ -51,8 +50,8 @@ OGC_SERVER = {
         'BACKEND' : 'geonode.geoserver',
         'LOCATION' : 'http://localhost:8080/geoserver/',
         'PUBLIC_LOCATION' : 'http://localhost:8080/geoserver/',
-        'USER' : 'geoadmin',
-        'PASSWORD' : 'zap1geo',
+        'USER' : '',
+        'PASSWORD' : '',
         'MAPFISH_PRINT_ENABLED' : True,
         'PRINT_NG_ENABLED' : True,
         'GEONODE_SECURITY_ENABLED' : True,
@@ -74,9 +73,8 @@ OGC_SERVER = {
 
 
 # all map base layers in the system
-BASELAYERS = [
-    {
-        "No background":{
+BASELAYERS = {
+    "No background":{
             "source": {"ptype": "gxp_olsource"},
             "type": "OpenLayers.Layer",
             "name": "No background",
@@ -84,9 +82,8 @@ BASELAYERS = [
             "visibility": False,
             "fixed": True,
             "group":"background"
-        }
-    },
-    {
+        },
+    
         "OSM Pacific Extract":{
             "source": {"ptype": "gxp_olsource"},
             "type":"OpenLayers.Layer.WMS",
@@ -104,9 +101,8 @@ BASELAYERS = [
                     "tiled": True
                 }
             ]
-        }
-    },
-    {
+        },
+    
         "mapnik":{
             "source": {"ptype": "gxp_osmsource"},
             "type": "OpenLayers.Layer.OSM",
@@ -114,40 +110,39 @@ BASELAYERS = [
             "visibility": False,
             "fixed": True,
             "group": "background"
-        }
-    },
-    {
+        },
+    
         "osm":{
             "source": {"ptype": "gxp_mapquestsource"},
             "name": "osm",
             "group": "background",
             "visibility": True
-        }
-    },
-    {
+        },
+    
         "naip":{
             "source": {"ptype": "gxp_mapquestsource"},
             "name": "naip",
             "group": "background",
             "visibility": False
-        }
-    },
-    {
+        },
+
         "mapboxsource":{
-            "source": {"ptype": "gxp_mapboxsource"},
+            "source": {"ptype": "gxp_mapboxsource"}
         }
-    }]
+}
 
 
 # map base layers we want to appear as options in geonode (HINT: edit this one!)
 DEFAULT_MAP_BASELAYERS = ["No Background","OSM Pacific Extract"]
 
 
+# produces MAP_BASELAYER settings
 def get_default_map_baselayers():
-    map = {}
-    for m in DEFAULT_MAP_LAYERS:
-        map.update({m: BASELAYERS.get(m)})
-    return map
+    maplist = []
+    for m in DEFAULT_MAP_BASELAYERS:
+      if not BASELAYERS.get(m) is None:
+        maplist.append(BASELAYERS.get(m))
+    return maplist
 
 
 MAP_BASELAYERS = get_default_map_baselayers()
