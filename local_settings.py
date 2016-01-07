@@ -95,7 +95,7 @@ BASELAYERS = {
                 "OSM Pacific Extract",
                 "http://192.168.56.32/geoserver/wms",
                 {
-                    "layers":["geonode:osm_composite"],
+                    "layers":["geonode:osm_pacific_composite"],
                     "format":"image/png",
                     "bgcolor":"0xb5d0d0",
                     "tiled": True
@@ -114,7 +114,7 @@ BASELAYERS = {
                 "OSM Kiribati Extract",
                 "http://192.168.56.32/geoserver/wms",
                 {
-                    "layers":["geonode:osm_composite"],
+                    "layers":["geonode:osm_kiribati_composite"],
                     "format":"image/png",
                     "bgcolor":"0xb5d0d0",
                     "tiled": True
