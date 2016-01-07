@@ -8,7 +8,7 @@ import geonode
 #DEBUG = TEMPLATE_DEBUG = True
 
 # Set to True to load non-minified versions of (static) client dependencies
-# Requires to set-up Node and tools that are required for static development 
+# Requires to set-up Node and tools that are required for static development
 # otherwise it will raise errors for the missing non-minified dependencies
 DEBUG_STATIC = False
 
@@ -83,7 +83,7 @@ BASELAYERS = {
             "fixed": True,
             "group":"background"
         },
-    
+
         "OSM Pacific Extract":{
             "source": {"ptype": "gxp_olsource"},
             "type":"OpenLayers.Layer.WMS",
@@ -102,7 +102,26 @@ BASELAYERS = {
                 }
             ]
         },
-    
+
+        "OSM Kiribati Extract":{
+            "source": {"ptype": "gxp_olsource"},
+            "type":"OpenLayers.Layer.WMS",
+            "name": "OSM Kiribati Extract",
+            "group":"background",
+            "visibility": False,
+            "fixed": True,
+            "args":[
+                "OSM Kiribati Extract",
+                "http://192.168.56.32/geoserver/wms",
+                {
+                    "layers":["geonode:osm_composite"],
+                    "format":"image/png",
+                    "bgcolor":"0xb5d0d0",
+                    "tiled": True
+                }
+            ]
+        },
+
         "mapnik":{
             "source": {"ptype": "gxp_osmsource"},
             "type": "OpenLayers.Layer.OSM",
@@ -111,14 +130,14 @@ BASELAYERS = {
             "fixed": True,
             "group": "background"
         },
-    
+
         "osm":{
             "source": {"ptype": "gxp_mapquestsource"},
             "name": "osm",
             "group": "background",
             "visibility": True
         },
-    
+
         "naip":{
             "source": {"ptype": "gxp_mapquestsource"},
             "name": "naip",
@@ -133,7 +152,7 @@ BASELAYERS = {
 
 
 # map base layers we want to appear as options in geonode (HINT: edit this one!)
-DEFAULT_MAP_BASELAYERS = ["No Background","OSM Pacific Extract"]
+DEFAULT_MAP_BASELAYERS = ["No background","OSM Pacific Extract"]
 
 
 # produces MAP_BASELAYER settings
@@ -200,7 +219,7 @@ STATICFILES_DIRS = [
 # Uncomment the following to receive emails whenever there are errors in GeoNode
 # or to be notified of new user requests when ACCOUNT_APPROVAL_REQUIRED has been set.
 #ADMINS = (
-#            ('John', 'john@example.com'), 
+#            ('John', 'john@example.com'),
 #         )
 
 # Uncomment the following to use a Gmail account as the email backend
@@ -213,5 +232,3 @@ STATICFILES_DIRS = [
 # For more information on available settings please consult the Django docs at
 # https://docs.djangoproject.com/en/dev/ref/settings
 ALLOWED_HOSTS=['localhost', 'tiny-ki-geo.vm', '127.0.0.1', '192.168.56.32', ]
-
-
