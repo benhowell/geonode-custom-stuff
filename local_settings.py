@@ -152,7 +152,7 @@ BASELAYERS = {
 
 
 # map base layers we want to appear as options in geonode (HINT: edit this one!)
-DEFAULT_MAP_BASELAYERS = ["No background","OSM Pacific Extract"]
+DEFAULT_MAP_BASELAYERS = ["No background","OSM Pacific Extract", "mapnik"]
 
 
 # produces MAP_BASELAYER settings
